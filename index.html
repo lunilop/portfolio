@@ -1,640 +1,799 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luna Lopez | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/themes.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/animations.css">
+
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Íconos de Lucide -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <div class="logo-hex"></div>
-                <span class="logo-text" data-es="LunLop" data-en="LunLop">LunLop</span>
+    <!-- Fondo animado con partículas -->
+    <div class="background-animation">
+        <canvas id="particleCanvas"></canvas>
+    </div>
+
+    <!-- Header con navegación -->
+    <header class="header" id="header">
+        <nav class="navbar container">
+            <!-- Logo y nombre -->
+            <div class="nav-brand">
+                <div class="brand-icon">
+                    <i data-lucide="code-2"></i>
+                </div>
+                <div class="brand-text">
+                    <h3>LUNLOP</h3>
+                </div>
             </div>
-            <div class="nav-menu">
-                <a href="#home" class="nav-link" data-es="Inicio" data-en="Home">Inicio</a>
-                <a href="#about" class="nav-link" data-es="Acerca" data-en="About">Acerca</a>
-                <a href="#projects" class="nav-link" data-es="Proyectos" data-en="Projects">Proyectos</a>
-                <a href="#skills" class="nav-link" data-es="Habilidades" data-en="Skills">Habilidades</a>
-                <a href="#contact" class="nav-link" data-es="Contacto" data-en="Contact">Contacto</a>
-            </div>
+
+            <!-- Menú de navegación -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active" data-text="inicio">Inicio</a></li>
+                <li><a href="#about" class="nav-link" data-text="sobre-mi">Sobre mí</a></li>
+                <li><a href="#experience" class="nav-link" data-text="experiencia">Experiencia</a></li>
+                <li><a href="#projects" class="nav-link" data-text="proyectos">Proyectos</a></li>
+                <li><a href="#skills" class="nav-link" data-text="habilidades">Habilidades</a></li>
+                <li><a href="#education" class="nav-link" data-text="educacion">Educación</a></li>
+                <li><a href="#contact" class="nav-link" data-text="contacto">Contacto</a></li>
+            </ul>
+
+            <!-- Controles de tema e idioma -->
             <div class="nav-controls">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
+                <button class="control-btn" id="languageToggle" title="Cambiar idioma">
+                    <i data-lucide="globe"></i>
+                    <span>ES</span>
                 </button>
-                <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
-                    <span class="lang-text">EN</span>
+                <button class="control-btn" id="themeToggle" title="Cambiar tema">
+                    <i data-lucide="sun"></i>
                 </button>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                <!-- Botón menú móvil -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu"></i>
+                </button>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg">
-            <div class="hex-pattern"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="name-highlight" data-es="Luna Lopez" data-en="Luna Lopez">Luna Lopez</span>
-                    <span class="title-main" data-es="Desarrolladora Backend SAP"
-                        data-en="SAP Backend Developer">Desarrollador Backend SAP</span>
-                    <span class="title-sub" data-es="Junior Developer" data-en="Junior Developer">Junior
-                        Developer</span>
-                </h1>
-                <p class="hero-description"
-                    data-es=" Especializada en desarrollo backend, con formacion en  SAP. Creando soluciones eficientes para optimizar procesos empresariales."
-                    data-en="Specialized in ackend development, with learning SAP. Creating efficient solutions to optimize business processes.">
-                    Especializada en desarrollo backend, con formacion en SAP. Creando soluciones eficientes para
-                    optimizar procesos empresariales.
-                </p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary" data-es="Contáctame" data-en="Contact Me">Contáctame</a>
-                    <a href="./assets/Currículum_vitae.pdf" download class="btn btn-secondary" data-es="Descargar CV"
-                        data-en="Download CV">
-                        <i class="fas fa-download"></i> Descargar CV
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="profile-card">
-                    <div class="profile-image">
-                        <img src="./img/Foto_Rosa.jpg" alt="Profile">
-                        <div class="profile-ring"></div>
+    <!-- Contenido principal -->
+    <main class="main-content">
+        <!-- Sección Hero - Presentación -->
+        <section class="hero section" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span data-text=""></span>
+                            <span class="text-gradient">Luna Lopez</span>
+                        </h1>
+                        <h2 class="hero-subtitle" data-text="desarrollador-backend">
+                            Desarrolladora Backend & Consultor SAP Junior
+                        </h2>
+                        <p class="hero-description" data-text="hero-desc">
+                            Enfocada en crear soluciones eficientes y escalables, alineadas a las necesidades del
+                            usuario.
+                        </p>
+
+                        <!-- Objetivos e intereses -->
+                        <!-- <div class="hero-interests">
+                            <div class="interest-item">
+                                <i data-lucide="target" class="interest-icon"></i>
+                                <span data-text="objetivo">Optimización de procesos empresariales</span>
+                            </div>
+                            <div class="interest-item">
+                                <i data-lucide="rocket" class="interest-icon"></i>
+                                <span data-text="interes">Innovación tecnológica</span>
+                            </div>
+                        </div> -->
+
+                        <!-- Botones de acción -->
+                        <div class="hero-buttons">
+                            <a href="#contact" class="btn btn-primary">
+                                <i data-lucide="mail"></i>
+                                <span data-text="contactame">Contáctame</span>
+                            </a>
+                            <a href="./assets/Currículum_vitae_Luna_Lopez.pdf" class="btn btn-secondary"
+                                id="downloadCV">
+                                <i data-lucide="download"></i>
+                                <span data-text="descargar-cv">Descargar CV</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Avatar circular -->
+                    <div class="hero-avatar">
+                        <div class="avatar-container">
+                            <img src="/img/Avatar.png" alt="Avatar" class="avatar-image">
+                            <div class="avatar-ring"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-es="Acerca de Mí" data-en="About Me">Acerca de Mí</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-card formation-card">
-                    <p style="size: 200px;">
-                        Desarrolladora de Software especializada en Backend y formación en SAP.
-                        Con experiencia en diseño y desarrollo web, de manera lógica y creativa. Disfruto
-                        trabajar en equipo y adaptarme a nuevos desafíos.
-                        <br> <br>Busco seguir creciendo en el
-                        área de Backend, aportando en proyectos colaborativos e innovadores
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experiencia Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-es="Experiencia Profecional" data-en="About Me">Experiencia Profecional
+        <!-- Sección Sobre mí -->
+        <section class="section" id="about">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-text="sobre-mi">Sobre mí</span>
+                    <div class="title-underline"></div>
                 </h2>
-                <p class="section-subtitle" data-es="Conoce mi formación y fortalezas"
-                    data-en="Learn about my background and strengths">Conoce mi formación y fortalezas</p>
-            </div>
-            <div class="about-grid">
-                <div class="about-card formation-card">
-                    <div class="card-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 data-es="Webmaster" data-en="Webmaster">Webmaster</h3>
-                    <ul>
-                        <li data-es="Gestion de proyectos de Softys y Cheers" data-en="">Gestion de proyectos de
-                            Softys y Cheers</li>
-                        <li data-es="Atención al cliente" data-en=""> Atención al cliente</li>
-                        <li data-es="Soporte técnico" data-en="">Soporte técnico</li>
-                        <li data-es="Realizacion de QA/UAT de diferentes iniciativas" data-en="">Realizacion de QA/UAT
-                            de diferentes iniciativas</li>
-                        <li data-es="Creacion de Landing Pages para Lancôme, Kiehl's y Urban" data-en="">Creacion de
-                            Landing Pages para Lancôme, Kiehl's y Urban</li>
-                    </ul>
-                </div>
-                <div class="about-card strengths-card">
-                    <div class="card-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3 data-es="Fortalezas Clave" data-en="Key Strengths">Fortalezas Clave</h3>
-                    <div class="strengths-grid">
-                        <div class="strength-item">
-                            <i class="fas fa-cogs"></i>
-                            <span data-es="Optimización de Procesos" data-en="Process Optimization">Optimización de
-                                Procesos</span>
-                        </div>
-                        <div class="strength-item">
-                            <i class="fas fa-chart-bar"></i>
-                            <span data-es="Comunicacion efectiva" data-en="">Comunicacion efectiva</span>
-                        </div>
-                        <div class="strength-item">
-                            <i class="fas fa-code"></i>
-                            <span data-es="Adaptacion a entornos dinámicos" data-en="">Adaptacion a entornos
-                                dinámicos</span>
-                        </div>
-                        <div class="strength-item">
-                            <i class="fas fa-puzzle-piece"></i>
-                            <span data-es="Resolución de Problemas" data-en="Problem Solving">Resolución de
-                                Problemas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-es="Proyectos" data-en="Projects">Proyectos</h2>
-                <!-- <p class="section-subtitle" data-es="Ejercicios SAP y análisis de datos" data-en="SAP exercises and data analysis">Ejercicios SAP y análisis de datos</p> -->
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Banking Project">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-google-drive"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title" data-es="Sistema de Gestión Bancario"
-                            data-en="Banking Management System">Sistema de Gestión Bancario</h3>
-                        <p class="project-description"
-                            data-es="Incluye inicio de sesión, gestión de usuarios y cuentas, transferencias, informes, procesamiento de solicitudes, pagos y autorizaciones de préstamos. Implementación de restricciones según el tipo de usuario y validaciones."
-                            data-en="Includes login, user and account management, transfers, reporting, application processing, payments, and loan authorization. Implementation of restrictions based on user type and validation.">
-                        Incluye inicio de secion, gestión de usuarios y cuentas, transferencias, informes, procesamiento de solicitudes, pagos y autorizaciones de préstamos. <br> Implementación de restricciones según el tipo de usuario y validaciones.
+                <div class="about-content">
+                    <div class="about-text">
+                        <p data-text="about-desc1">
+                            Me especializo en integrar lógica backend con estructuras claras y mantenibles,
+                            aplicando metodologías ágiles.
+                            Disfruto aprender, resolver problemas, trabajar en equipo y,
+                            adaptarme a diferentes entornos y tecnologías.
+                        </p><br>
+                        <p data-text="about-desc2">
+                            Tengo experiencia en diseño web y desarrollo backend escalable.
+                            Actualmente me estoy profundizando en SAP e Inteligencia Artificial
+                            para optimizar procesos empresariales.
                         </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">CSS</span>
-                        </div>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600"
-                            alt="Data Analysis">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-google-drive"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                    <!-- Tarjetas de especialidades -->
+                    <div class="specialties-grid">
+                        <div class="specialty-card">
+                            <div class="specialty-icon backend">
+                                <i data-lucide="server"></i>
                             </div>
+                            <h3 data-text="backend-dev">Backend Development</h3>
+                            <p data-text="backend-desc">APIs REST y arquitecturas escalables</p>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title" data-es="PetShop - Sistema de gestión"
-                            data-en="PetShop - Management System">PetShop - Sistema de gestión</h3>
-                        <p class="project-description"
-                            data-es="Implementa operaciones gestión de usuarios y productos, además de autentificación de registro y login."
-                            data-en="Implements user and product management operations, as well as registration and login authentication.">
-                            Implementa operaciones gestión de usuarios y productos, además de autentificación de registro y login.</p>
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">FastAPI</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600"
-                            alt="Database Project">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-google-drive"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        <div class="specialty-card">
+                            <div class="specialty-icon database">
+                                <i data-lucide="database"></i>
                             </div>
+                            <h3 data-text="database-management">Gestión de Datos</h3>
+                            <p data-text="database-desc">Diseño y optimización de bases de datos</p>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title" data-es="Asignacion de Turnos eCommerce" data-en="Web eCommerce">Asignacion de Turnos eCommerce</h3>
-                        <p class="project-description"
-                            data-es="Contiene un inicio de sesión con validaciones por rol, asignación y visualización de Turnos de servicios, sistema de gestión de empleados y clientes. "
-                            data-en="Contains a login with role validations, assignment and display of service shifts, employee and customer management system">
-                            Contiene un inicio de sesión con validaciones por rol,asignación y visualización de Turnos de servicios, sistema de gestión de empleados y
-                            clientes. </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">.NET</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/card-3.png"
-                            alt="Database Project">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-google-drive"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        <div class="specialty-card">
+                            <div class="specialty-icon sap">
+                                <i data-lucide="briefcase"></i>
                             </div>
+                            <h3 data-text="sap-consulting">Consultoría SAP</h3>
+                            <p data-text="sap-desc">Implementación y optimización de procesos SAP</p>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title" data-es="Sistema de Getión Empresarial"
-                            data-en="Business Management System">Sistema de Getión Empresarial</h3>
-                        <p class="project-description"
-                            data-es="Destinado para una empresa de calzados, pero adaptable para cualquier otro rubro. Incluye el alta, modificacion, eliminacion y listado de marcas, productos y ventas, datos de inicio, copia de seguridad y restauración de archivos."
-                            data-en="Designed for a footwear company, but adaptable to any other industry. It includes registration, modification, deletion, and listing of brands, products, and sales, as well as startup data, backup, and file restoration.">
-                            Destinado para una empresa de calzados, pero adaptable para cualquier otro rubro. Incluye el alta, modificacion, eliminacion y listado de marcas, productos y ventas, datos de inicio, copia de seguridad y restauración de archivos. </p>
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">C++</span>
-                        </div>
+
                     </div>
                 </div>
+        </section>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/card-2.png"
-                            alt="Database Project">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-google-drive"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-content">
-                        <h3 class="project-title" data-es="Selección del mundial 2022"
-                            data-en="2022 World Cup Selection">Selección del mundial 2022</h3>
-                        <p class="project-description" data-es="Sitio Web responsive, con inicio de sesión para un usuario predeterminado. Contiene un mapa con la ubicación de Qatar y lugar de nacimiento de algunos jugadores. Ademas de las fichas de cada jugador con sus respectivas características."
-                            data-en="Responsive website with login for a default user. It features a map showing the location of Qatar and the birthplaces of some players. It also includes player profiles with their respective characteristics.">
-                            Sitio Web responsive, con inicio de sesión para un usuario predeterminado. Contiene un mapa con la ubicación de Qatar y lugar de nacimiento de algunos jugadores. Ademas de las fichas de cada jugador con sus respectivas características.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./img/card-1.png"
-                            alt="Database Project">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-google-drive"></i></a>
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title" data-es="Sitio eCommerce"
-                            data-en="eCommerce site">Sitio eCommerce</h3>
-                        <p class="project-description" data-es="Incluye un home, carrusel de productos, inicio de secion y registro de cuenta. Cabe destacar que no tine funciones solo es el aspecto visual."
-                            data-en="It includes a home page, product carousel, login, and account registration. It's worth noting that it doesn't have any features other than the visual aspect.">
-                            Incluye un home, carrusel de productos, inicio de secion y registro de cuenta.Cabe destacar que no tine funciones solo es el aspecto visual.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-es="Habilidades Técnicas" data-en="Technical Skills">Habilidades Técnicas
+        <!-- Sección Experiencia -->
+        <section class="section" id="experience">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-text="experiencia-profesional">Experiencia Profesional</span>
+                    <div class="title-underline"></div>
                 </h2>
-                <p class="section-subtitle" data-es="Competencias técnicas y herramientas"
-                    data-en="Technical competencies and tools">Competencias técnicas y herramientas</p>
+
+                <div class="timeline"><!-- tamaño de las targets-->
+                    <div class="timeline-item current">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content"> <!--  espacio entre la linea y target-->
+                            <div class="experience-card"> <!-- fondo de la target-->
+                                <div class="experience-header"><!-- titulo al lado del icone -->
+                                    <div class="company-logo">
+                                        <i data-lucide="briefcase"></i>
+                                    </div>
+                                    <div class="experience-info">
+                                        <h3 data-text="pasante-sap">Pasante de Desarrollo SAP & Análisis de Datos</h3>
+                                        <p class="company-name">ARTECH | Fundación Pescar</p>
+                                        <span class="experience-type" data-text="pasantia">Pasante SAP (Carga total: 318
+                                            hs)</span>
+                                    </div>
+                                </div>
+
+                                <div class="experience-status current" data-text="actual">Actual</div>
+
+                                <p class="experience-description" data-text="exp-sap-desc-1">
+                                    Formación especializada en Análisis de Datos y SAP.
+                                    Desarrollo intensivo en Python y SQL, complementado con entrenamiento en
+                                    metodologías ágiles, comunicación efectiva, trabajo en equipo e inteligencia
+                                    emocional.
+
+                                </p>
+                                <p class="experience-description" data-text="exp-sap-desc-2">
+                                    Realicé proyectos prácticos que integran lógica de programación con procesos de
+                                    negocio.
+                                </p>
+
+                                <div class="experience-skills">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">SQL</span>
+                                    <span class="skill-tag">SAP</span>
+                                    <span class="skill-tag">Fiori</span>
+                                    <span class="skill-tag">BTP</span>
+                                    <span class="skill-tag" data-text="metologias-agiles">Metodologías Ágiles</span>
+                                    <span class="skill-tag" data-text="habilidades-blandas">Habilidades Blandas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segunda experiencia para completar la línea -->
+                    <div class="timeline-item completed">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="experience-card">
+                                <div class="experience-header">
+                                    <div class="company-logo">
+                                        <i data-lucide="code"></i>
+                                    </div>
+                                    <div class="experience-info">
+                                        <h3 data-text="desarrollador-webmaster"> Webmaster</h3>
+                                        <p class="company-name">Bits0 | Marketing services</p>
+                                        <span class="experience-type" data-text="webmaster">Webmastering (Carga total:
+                                            315 hs)</span>
+                                    </div>
+                                </div>
+
+                                <p class="experience-description" data-text="exp-webmaster-desc-1">
+                                    Gestioné proyectos para los clientes corporativos Softys y Cheers,
+                                    brindando soporte técnico y atención al cliente.
+                                    Realicé tareas de QA/UAT para garantizar la calidad de las implementaciones.
+                                </p>
+                                <p class="experience-description" data-text="exp-webmaster-desc-2">
+                                    Desarrollé Landing Pages en conjunto con Salesforce para las marcas Lancôme, Kiehl’s
+                                    y Urban.
+                                    Me adapté constantemente a entornos dinámicos, con aprendizaje continuo en proyectos
+                                    reales.
+                                </p>
+
+                                <div class="experience-skills">
+                                    <span class="skill-tag">QA - UAT</span>
+                                    <span class="skill-tag">Salesforce</span>
+                                    <span class="skill-tag">VTEX</span>
+                                    <span class="skill-tag" data-text="gestion-projects">Gestión de Proyectos</span>
+                                    <span class="skill-tag" data-text="soporte-tecnico">Soporte Técnico</span>
+                                    <span class="skill-tag" data-text="atencion-cliente">Atención al cliente</span>
+                                    <span class="skill-tag" data-text="ticket-webmaster">Creación de Tickets</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="skills-container">
+        </section>
 
-                <div class="skills-category">
-                    <h3 class="category-title" data-es="Bases de Datos" data-en="Databases">Bases de Datos</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-search"></i>
-                            <span class="skill-name">SQL</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-server"></i>
-                            <span class="skill-name">MySQL</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-cloud"></i>
-                            <span class="skill-name">Mongo DB</span>
-                        </li>
-                    </ul>
+        <!-- Sección Proyectos -->
+        <section class="section" id="projects">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-text="proyectos">Proyectos</span>
+                    <div class="title-underline"></div>
+                </h2>
+
+                <div class="projects-grid">
+                    <!-- Proyecto 1: Sistema Bancario -->
+                    <div class="project-card" data-category="sap backend">
+                        <div class="project-image">
+                            <img src="./img/projects/banco-1.jpg"
+                                alt="Proyecto SAP">
+                            <button id="ver-mas" class="btn btn-primary project-modal-btn" data-project="proyecto-1">
+                                Ver más
+                            </button>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title" data-text="sistema-bancario">Ejercicio SAP - Gestión de
+                                    Inventario</h3>
+                            </div>
+
+                            <p class="project-description" data-text="proyecto-banco-desc">
+                                Desarrollo de un sistema bancario con gestión completa de usuarios y cuentas.
+                                Incluye operaciones de transferencias, informes financieros, pagos y autorizaciones de
+                                préstamos.
+                                Implementa validaciones según el tipo de usuario para garantizar seguridad y control.
+                            </p>
+
+                            <div class="project-achievements">
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-banco-1">Automatización de procesos clave como transferencias
+                                        y préstamos</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-banco-2">Módulo de informes que facilita la toma de
+                                        decisiones.</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-banco-3">Restricciones por roles que mejoran la seguridad del
+                                        sistema.</span>
+                                </div>
+                            </div>
+
+                            <div class="project-tags">
+                                <span class="tag">Java</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">MySQL</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/lunilop/banking_management_system" class="project-btn github" target="_blank">
+                                    <span class="btn-name">GitHub</span>
+                                    <i data-lucide="github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 2: Desarrollo Web -->
+                    <div class="project-card" data-category="web backend">
+                        <div class="project-image">
+                            <img src="./img/projects/ecommerce-1.jpg"
+                                alt="Proyecto Web">
+                            <button id="ver-mas" class="btn btn-primary project-modal-btn" data-project="proyecto-2">
+                                Ver más
+                            </button>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title" data-text="app-eCommerce">Asignación de Turnos eCommerce</h3>
+                            </div>
+
+                            <p class="project-description" data-text="proyecto-eCommerce-desc">
+                                Sistema de turnos para eCommerce con inicio de sesión validado por rol (gerentes y empleados). 
+                                Permite la asignación y visualización de turnos, así como la gestión de clientes y empleados.
+                            </p>
+
+                            <div class="project-achievements">
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-eCommerce-1">Optimización de la organización de turnos.</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-eCommerce-2">Diferenciación de permisos según rol (mayor seguridad y control).</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-eCommerce-3">Integración con base de datos para almacenamiento confiable.</span>
+                                </div>
+                            </div>
+
+                            <div class="project-tags">
+                                <span class="tag">C#</span>
+                                <span class="tag">.NET</span>
+                                <span class="tag">SQL Server</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/lunilop/ecommerce_turn_system" class="project-btn github" target="_blank">
+                                    <span class="btn-name">GitHub</span>
+                                    <i data-lucide="github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 3: Análisis de Datos -->
+                    <div class="project-card" data-category="datos">
+                        <div class="project-image">
+                            <img src="./img/projects/mundial-1.png"
+                                alt="Proyecto Datos">
+                            <button id="ver-mas" class="btn btn-primary project-modal-btn" data-project="proyecto-3">
+                                Ver más
+                            </button>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title" data-text="proyecto-web">Selección del Mundial 2022</h3>
+                            </div>
+
+                            <p class="project-description" data-text="proyecto-web-desc">
+                                Sitio web responsive dedicado a la Selección Argentina. Incluye un mapa interactivo con la 
+                                ubicación de Qatar y el lugar de nacimiento de jugadores, además de fichas con 
+                                información detallada
+                            </p>
+
+                            <div class="project-achievements">
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-web-1">Diseño responsive accesible desde cualquier dispositivo.</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-web-2">Presentación interactiva de información geográfica y jugadores.</span>
+                                </div>
+                                <div class="achievement-item">
+                                    <i data-lucide="check-circle"></i>
+                                    <span data-text="logro-web-3">Experiencia de usuario atractiva con fichas dinámicas.</span>
+                                </div>
+                            </div>
+
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/lunilop/Mundial_2022" class="project-btn github" target="_blank">
+                                    <span class="btn-name">GitHub</span>
+                                    <i data-lucide="github"></i>
+                                </a>
+                                <a href="https://amazing-gecko-3114c5.netlify.app/" class="project-btn demo" target="_blank">
+                                    <span class="btn-name">Demo</span>
+                                    <i data-lucide="external-link"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+            </div>
+        </section>
+
+        <!-- Modal de Proyecto -->
+        <div class="project-modal" id="projectModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Título del Proyecto</h2>
+                    <!-- Botones de enlaces -->
+                    <div class="modal-project-buttons" id="modalProjectButtons"></div>
+
+                    <button class="modal-close" id="modalClose">
+                        <i data-lucide="x"></i>
+                    </button>
                 </div>
 
-                <div class="skills-category">
-                    <h3 class="category-title" data-es="Backend" data-en="Backend">Backend</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-chart-bar"></i>
-                            <span class="skill-name">Java</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-file-excel"></i>
-                            <span class="skill-name">C#</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fab fa-python"></i>
-                            <span class="skill-name">Python</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-chart-line"></i>
-                            <span class="skill-name">.NET</span>
-                        </li>
-                    </ul>
+                <div class="modal-body">
+                    <!-- Carrusel de imágenes -->
+                    <div class="project-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-slides" id="carouselSlides">
+                                <!-- Las imágenes se cargarán dinámicamente -->
+                            </div>
+                            <button class="carousel-btn prev" id="carouselPrev">
+                                <i data-lucide="chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next" id="carouselNext">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <!-- Los indicadores se generarán dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Contenido del proyecto -->
+                    <div class="modal-project-content">
+                        
+                    </div>
                 </div>
-
-                <div class="skills-category">
-                    <h3 class="category-title" data-es="Frontend" data-en="Frontend">Frontend</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-code"></i>
-                            <span class="skill-name">HTML</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-database"></i>
-                            <span class="skill-name">CSS</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-desktop"></i>
-                            <span class="skill-name">JavaScript</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-cogs"></i>
-                            <span class="skill-name">TypeScript</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skills-category">
-                    <h3 class="category-title" data-es="Herramientas" data-en="Tools">Herramientas</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-code"></i>
-                            <span class="skill-name">GitHub</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-database"></i>
-                            <span class="skill-name">GitHub</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-desktop"></i>
-                            <span class="skill-name">Trello</span>
-                        </li>
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-cogs"></i>
-                            <span class="skill-name">Visual Studio</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="skills-category">
-                    <h3 class="category-title" data-es="Tecnologías SAP" data-en="SAP Technologies">Tecnologías SAP</h3>
-                    <ul class="skills-list">
-                        <li class="skill-item stagger-item">
-                            <i class="skill-icon fas fa-code"></i>
-                            <span data-es="Proximamente" data-en="Soon" class="skill-name">Proximamente</span>
-                        </li>
-                    </ul>
-                </div>
-
-
             </div>
         </div>
-    </section>
 
-    <!-- Competencies Section -->
-    <section class="competencies">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-es="Competencias Personales" data-en="Personal Competencies">Competencias
-                    Personales</h2>
-                <p class="section-subtitle" data-es="Habilidades blandas y competencias profesionales"
-                    data-en="Soft skills and professional competencies">Habilidades blandas y competencias profesionales
-                </p>
-            </div>
-            <div class="competencies-grid">
-                <div class="competency-card">
-                    <div class="competency-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 data-es="Trabajo en Equipo" data-en="Teamwork">Trabajo en Equipo</h3>
-                    <p data-es="Experiencia colaborando en equipos multidisciplinarios para alcanzar objetivos comunes de manera eficiente."
-                        data-en="Experience collaborating in multidisciplinary teams to achieve common objectives efficiently.">
-                        Experiencia colaborando en equipos multidisciplinarios para alcanzar objetivos comunes de manera
-                        eficiente.
-                    </p>
-                </div>
-                <div class="competency-card">
-                    <div class="competency-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3 data-es="Gestión del Tiempo" data-en="Time Management">Gestión del Tiempo</h3>
-                    <p data-es="Habilidad para priorizar tareas, cumplir con plazos establecidos y mantener alta productividad bajo presión."
-                        data-en="Ability to prioritize tasks, meet established deadlines and maintain high productivity under pressure.">
-                        Habilidad para priorizar tareas, cumplir con plazos establecidos y mantener alta productividad
-                        bajo presión.
-                    </p>
-                </div>
-                <div class="competency-card">
-                    <div class="competency-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 data-es="Resolución de Problemas" data-en="Problem Solving">Resolución de Problemas</h3>
-                    <p data-es="Enfoque analítico para identificar problemas, evaluar alternativas y implementar soluciones efectivas."
-                        data-en="Analytical approach to identify problems, evaluate alternatives and implement effective solutions.">
-                        Enfoque analítico para identificar problemas, evaluar alternativas y implementar soluciones
-                        efectivas.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Sección Habilidades Técnicas -->
+        <section class="section" id="skills">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-text="habilidades-tecnicas">Habilidades Técnicas</span>
+                    <div class="title-underline"></div>
+                </h2>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-es="Contacto" data-en="Contact">Contacto</h2>
-                <p class="section-subtitle" data-es="Conectemos y trabajemos juntos"
-                    data-en="Let's connect and work together">Conectemos y trabajemos juntos</p>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3 data-es="¡Hablemos!" data-en="Let's Talk!">¡Hablemos!</h3>
-                    <p data-es="Estoy disponible para nuevas oportunidades y proyectos desafiantes. No dudes en contactarme."
-                        data-en="I'm available for new opportunities and challenging projects. Feel free to contact me.">
-                        Estoy disponible para nuevas oportunidades y proyectos desafiantes. No dudes en contactarme.
-                    </p>
-                    <div class="contact-links">
-                        <a href="mailto:lunalopez0125@gmail.com" class="contact-link">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <span class="link-title">Email</span>
+                <div class="skills-grid">
+                    <!-- Backend Skills -->
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <div class="category-icon backend">
+                                <i data-lucide="server"></i>
                             </div>
-                        </a>
-                        <a href="https://linkedin.com/in/luna-lopez-9187a1216/" target="_blank" class="contact-link">
-                            <i class="fab fa-linkedin"></i>
-                            <div>
-                                <span class="link-title">LinkedIn</span>
+                            <h3 data-text="backend">Backend</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item">Java</div>
+                            <div class="skill-item">C#</div>
+                            <div class="skill-item">Python</div>
+                            <div class="skill-item">.NET</div>
+                        </div>
+                    </div>
+
+                    <!-- Database Skills -->
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <div class="category-icon database">
+                                <i data-lucide="database"></i>
                             </div>
-                        </a>
-                        <a href="https://github.com/lunilop" target="_blank" class="contact-link">
-                            <i class="fab fa-github"></i>
-                            <div>
-                                <span class="link-title">GitHub</span>
+                            <h3 data-text="bases-datos">Bases de Datos</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item">SQL</div>
+                            <div class="skill-item">MySQL</div>
+                            <div class="skill-item">MongoDB</div>
+                        </div>
+                    </div>
+
+                    <!-- Frontend Skills -->
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <div class="category-icon frontend">
+                                <i data-lucide="layout"></i>
                             </div>
-                        </a>
-                        <a href="./assets/Currículum_vitae.pdf" download class="contact-link download-cv">
-                            <i class="fas fa-download"></i>
-                            <div>
-                                <span class="link-title" data-es="Descargar CV" data-en="Download CV">Descargar
-                                    CV</span>
-                                <span class="link-value">PDF</span>
+                            <h3 data-text="frontend">Frontend</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item">HTML</div>
+                            <div class="skill-item">CSS</div>
+                            <div class="skill-item">JavaScript</div>
+                            <div class="skill-item">TypeScript</div>
+                        </div>
+                    </div>
+
+                    <!-- Tools Skills -->
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <div class="category-icon tools">
+                                <i data-lucide="wrench"></i>
                             </div>
-                        </a>
+                            <h3 data-text="herramientas">Herramientas</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item">Git</div>
+                            <div class="skill-item">GitHub</div>
+                            <div class="skill-item">Visual Studio</div>
+                            <div class="skill-item">Trello</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="category-header">
+                            <div class="category-icon sap">
+                                <i data-lucide="building-2"></i>
+                            </div>
+                            <h3 data-text="SAP">SAP</h3>
+                        </div>
+                        <div class="skills-list">
+                            <div class="skill-item">ABAP</div>
+                            <div class="skill-item">Fiori</div>
+                            <div class="skill-item">BTP</div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form class="form" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-input" placeholder=" " required>
-                            <label class="form-label" data-es="Nombre" data-en="Name">Nombre</label>
+
+                <!-- Habilidades Personales -->
+                <div class="soft-skills">
+                    <h3 class="subsection-title">
+                        <span data-text="habilidades-personales">Habilidades Personales</span>
+                    </h3>
+                    <div class="soft-skills-grid">
+                        <div class="soft-skill-item">
+                            <i data-lucide="brain" class="soft-skill-icon"></i>
+                            <span data-text="pensamiento-analitico">Pensamiento Analítico</span>
                         </div>
-                        <div class="form-group">
-                            <input type="email" class="form-input" placeholder=" " required>
-                            <label class="form-label" data-es="Email" data-en="Email">Email</label>
+                        <div class="soft-skill-item">
+                            <i data-lucide="users" class="soft-skill-icon"></i>
+                            <span data-text="trabajo-equipo">Trabajo en Equipo</span>
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-input" placeholder=" " required>
-                            <label class="form-label" data-es="Asunto" data-en="Subject">Asunto</label>
+                        <div class="soft-skill-item">
+                            <i data-lucide="message-circle" class="soft-skill-icon"></i>
+                            <span data-text="comunicacion">Comunicación</span>
                         </div>
-                        <div class="form-group">
-                            <textarea class="form-input form-textarea" placeholder=" " required></textarea>
-                            <label class="form-label" data-es="Mensaje" data-en="Message">Mensaje</label>
+                        <!-- <div class="soft-skill-item">
+                            <i data-lucide="clock" class="soft-skill-icon"></i>
+                            <span data-text="gestion-tiempo">Gestión del Tiempo</span>
+                        </div> -->
+                        <div class="soft-skill-item">
+                            <i data-lucide="lightbulb" class="soft-skill-icon"></i>
+                            <span data-text="resolucion-problemas">Resolución de Problemas</span>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <span data-es="Enviar Mensaje" data-en="Send Message">Enviar Mensaje</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+                        <div class="soft-skill-item">
+                            <i data-lucide="zap" class="soft-skill-icon"></i>
+                            <span data-text="innovacion">Innovación Tecnológica</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Sección Educación -->
+        <section class="section" id="education">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-text="educacion">Educación</span>
+                    <div class="title-underline"></div>
+                </h2>
+
+                <!-- Educación Universitaria -->
+                <div class="education-section">
+                    <div class="education-grid">
+                        <div class="education-card university">
+                            <div class="education-header">
+                                <div class="education-icon">
+                                    <i data-lucide="graduation-cap"></i>
+                                </div>
+                                <div class="education-content">
+                                    <h3 data-text="carrera-universitaria">Licenciatura en Sistemas de Información</h3>
+                                    <p class="institution" data-text="universidad">Universidad Nacional de Luján</p>
+                                </div>
+                            </div>
+                            <div class="education-date">
+                                <span class="education-period">2025 - Actualmente</span>
+                                <div class="status-badge in-progress" data-text="en-curso">En curso</div>
+                            </div>
+                        </div>
+
+                        <div class="education-card secondary">
+                            <div class="education-header">
+                                <div class="education-icon">
+                                    <i data-lucide="book-open"></i>
+                                </div>
+                                <div class="education-content">
+                                    <h3 data-text="tecnicatura">Tecnicatura en Programación Superior</h3>
+                                    <p class="institution" data-text="utn-universidad">Universidad Tecnológica Nacional
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="education-date">
+                                <span class="education-period">2023 - 2024</span>
+                                <div class="status-badge completed" data-text="completado">Completado</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <a href="education-detail.html" class="know-more-btn">
+                        <span data-text="conoceme-mas">Conóceme más</span>
+                        <i data-lucide="arrow-right"></i>
+                    </a> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="section-title">
+                    <span data-text="contacto">Contacto</span>
+                    <div class="title-underline"></div>
+                </h2>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3 data-text="conectemos">¡Conectemos!</h3>
+                        <p data-text="contact-desc">
+                            Estoy disponible para nuevas oportunidades y proyectos desafiantes. ¡No dudes en
+                            contactarme!
+                        </p>
+
+                        <div class="contact-links">
+                            <a href="mailto:lunalopez0125@gmail.com" class="contact-link">
+                                <div class="contact-icon email">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <h4>Email</h4>
+                                    <p>lunalopez0125@gmail.com</p>
+                                </div>
+                            </a>
+                            <a href="https://linkedin.com/in/luna-lopez-9187a1216/" class="contact-link"
+                                target="_blank">
+                                <div class="contact-icon linkedin">
+                                    <i data-lucide="linkedin"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <h4>LinkedIn</h4>
+                                    <p>linkedin.com/in/luna-lopez-/</p>
+                                </div>
+                            </a>
+                            <a href="https://github.com/lunilop" class="contact-link" target="_blank">
+                                <div class="contact-icon github">
+                                    <i data-lucide="github"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <h4>GitHub</h4>
+                                    <p>github.com/lunilop</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="cv-download" id="downloadCVBtn">
+                            <a href="./assets/Currículum_vitae_Luna_Lopez.pdf">
+                                <button class="btn btn-primary" id="btnContact">
+                                    <i data-lucide="download"></i>
+                                    <span data-text="descargar-cv-completo">Descargar CV Completo</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de contacto -->
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name" data-text="nombre">Nombre</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" data-text="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject" data-text="asunto">Asunto</label>
+                                <!-- <input type="text" id="subject" name="subject" required> -->
+                                <select id="subject" name="subject" required>
+                                    <option value="" disabled selected data-text="select-asunto">Selecciona un asunto</option>
+                                    <option value="Oportunidad laboral" data-text="opotunidad-laboral">Oportunidad laboral</option>
+                                    <option value="Colaboración" data-text="colaboracion">Colaboración</option>
+                                    <option value="Consulta general" data-text="consulta-general">Consulta general</option>
+                                    <option value="Otro" data-text="otro">Otro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" data-text="mensaje">Mensaje</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" id="btnEnviar">
+                                <i data-lucide="send"></i>
+                                <span data-text="enviar-mensaje">Enviar Mensaje</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <!-- Columna 1: Descripción personal -->
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <div class="logo-hex"></div>
-                        <span>Luna Lopez</span>
-                    </div>
-                    <p data-es="Desarrolladora Backend SAP especializada en crear soluciones eficientes para empresas."
-                        data-en="SAP Backend Developer specialized in creating efficient solutions for businesses.">
-                        Desarrolladora Backend SAP especializada en crear soluciones eficientes para empresas.
-                    </p>
-                </div>
-
-                <!-- Columna 2: Navegación -->
-                <div class="footer-nav">
-                    <h4 data-es="Navegación" data-en="Navigation">Navegación</h4>
-                    <ul>
-                        <li><a href="#home" data-es="Inicio" data-en="Home">Inicio</a></li>
-                        <li><a href="#about" data-es="Acerca" data-en="About">Acerca</a></li>
-                        <li><a href="#projects" data-es="Proyectos" data-en="Projects">Proyectos</a></li>
-                        <li><a href="#skills" data-es="Habilidades" data-en="Skills">Habilidades</a></li>
-                        <li><a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a></li>
-                    </ul>
-                </div>
-
-                <!-- Columna 3: Proyectos -->
-                <div class="footer-projects">
-                    <h4 data-es="Proyectos" data-en="Projects">Proyectos</h4>
-                    <ul>
-                        <li><a href="#" data-es="Sistema de Gestión Bancario" data-en="Banking Management System">Sistema de Gestión Bancario</a></li>
-                        <li><a href="#" data-es="PetShop - Sistema de gestión" data-en="PetShop - Management System">PetShop - Sistema de gestión</a></li>
-                        <li><a href="#" data-es="Asignacion de Turnos eCommerce" data-en="Web eCommerce">Asignacion de Turnos eCommerce"</a></li>
-                        <li><a href="#" data-es="Sistema de Getión Empresarial" data-en="Business Management System">Sistema de Getión Empresarial</a></li>
-                        <li><a href="#" data-es="Selección del mundial 2022" data-en="2022 World Cup Selection">Selección del mundial 2022</a></li>
-                        <li><a href="#" data-es="Sitio eCommerce" data-en="eCommerce site">Sitio eCommerce</a></li>
-                    </ul>
-                </div>
-
-                <!-- Columna 4: Contacto -->
-                <div class="footer-contact">
-                    <h4 data-es="Contacto" data-en="Contact">Contacto</h4>
-                    <ul>
-                        <li><a href="mailto:lunalopez0125@gmail.com">Email</a></li>
-                        <li><a href="https://linkedin.com/in/luna-lopez-9187a1216/" target="_blank">LinkedIn</a></li>
-                        <li><a href="https://github.com/lunilop" target="_blank">GitHub</a></li>
-                        <li><a href="./assets/Currículum_vitae.pdf" download data-es="Descargar CV" data-en="Download CV">Descargar
-                                CV</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright centrado -->
-            <div class="footer-copy">
-                <p>&copy; 2025 Luna Lopez. <span data-es="Todos los derechos reservados."
-                        data-en="All rights reserved.">Todos los derechos reservados.</span></p>
-            </div>
+            <p> 2025 Luna Lopez | <span data-text="footer-text"> Desarrollado con mucho ❤️, todos los derechos
+                    reservados.</span></p>
         </div>
     </footer>
 
-    <!-- Botones de navegación flotantes -->
+    <!-- Botones de navegación arriba/abajo -->
     <div class="scroll-buttons">
-        <button class="scroll-btn scroll-top" id="scrollTop" title="Ir arriba">
-            <i class="fas fa-chevron-up"></i>
+        <button class="scroll-btn" id="scrollToTop" title="Ir arriba">
+            <i data-lucide="chevron-up"></i>
         </button>
-        <button class="scroll-btn scroll-bottom" id="scrollBottom" title="Ir abajo">
-            <i class="fas fa-chevron-down"></i>
+        <button class="scroll-btn" id="scrollToBottom" title="Ir abajo">
+            <i data-lucide="chevron-down"></i>
         </button>
     </div>
 
-    <!-- Cursor personalizado -->
-    <div class="custom-cursor" id="customCursor"></div>
+    <!-- Scripts -->
+    <script src="scripts/translations.js"></script>
+    <script src="scripts/theme.js"></script>
+    <script src="scripts/particles.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/projects.js"></script>
+    <script src="scripts/forms.js"></script>
 
-    <script src="script.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("NRNMUPc-7ZVEXtuaU"); // tu user_id
+        })();
+    </script>
 </body>
 
 </html>

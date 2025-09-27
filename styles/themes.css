@@ -1,0 +1,234 @@
+/* =====================================
+   SISTEMA DE TEMAS (CLARO Y OSCURO)
+   ===================================== */
+
+/* Tema Oscuro (por defecto) */
+[data-theme="dark"] {
+    /* Colores base del tema oscuro */
+    --bg-primary: #0a0f1c; /* Azul muy oscuro para fondo principal */
+    --bg-secondary: #1a2332; /* Azul medio para fondos secundarios */
+    --bg-card: rgba(26, 35, 50, 0.626); /* Fondo de tarjetas con transparencia */
+    --bg-glass: rgba(255, 255, 255, 0.1); /* Efecto glassmorphism */
+    --bg-menu:rgba(26, 35, 50, 0.865);
+    
+    /* Gradientes principales */
+    --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06a7d4 100%); /* Violeta-azul */
+    --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #22c55e 100%); /* Azul-celeste */
+    --gradient-accent: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); /* Verde-cian */
+    
+    /* Colores de texto */
+    --text-primary: #ffffff; /* Blanco para texto principal */
+    --text-secondary: #f8ecec; /* Gris claro para texto secundario */
+    --text-accent: #b190fe; /* Violeta para acentos */
+    
+    /* Colores de estado */
+    --color-success: #10b981; /* Verde para éxito */
+    --color-warning: #f59e0b; /* Amarillo para advertencias */
+    --color-error: #ef4444; /* Rojo para errores */
+    
+    /* Bordes y separadores */
+    --border-color: rgba(255, 255, 255, 0.350); /* Bordes sutiles */
+    --divider-color: rgba(255, 255, 255, 0.05); /* Divisores muy sutiles */
+    
+    /* Sombras para tema oscuro */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Tema Claro */
+[data-theme="light"] {
+    /* Colores base del tema claro */
+    --bg-primary: #fdf2f8; /* Rosa muy claro para fondo principal */
+    --bg-secondary: #fce7f3; /* Rosa claro para fondos secundarios */
+    --bg-card: rgba(255, 255, 255, 0.726); /* Blanco transparente para tarjetas */
+    --bg-glass: rgba(255, 255, 255, 0.25); /* Glassmorphism más visible */
+    --bg-menu: rgba(255, 255, 255, 0.854);
+    
+    /* Gradientes principales */
+    --gradient-primary: linear-gradient(135deg, #ec4899 0%, #f97316 100%); /* Rosa-naranja */
+    --gradient-secondary: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); /* Violeta-rosa */
+    --gradient-accent: linear-gradient(135deg, #10b981 0%, #059669 100%); /* Verde */
+    
+    /* Colores de texto */
+    --text-primary: #1e1f20; /* Gris oscuro para texto principal #1f2937 */
+    --text-secondary: #1d1d1e; /* Gris medio para texto secundario  #6b7280*/
+    --text-accent: #ec4899; /* Rosa para acentos */
+    
+    /* Colores de estado (ajustados para tema claro) */
+    --color-success: #059669; /* Verde más oscuro */
+    --color-warning: #d97706; /* Amarillo más oscuro */
+    --color-error: #dc2626; /* Rojo más oscuro */
+    
+    /* Bordes y separadores */
+    --border-color: rgba(0, 0, 0, 0.350); /* Bordes oscuros sutiles */
+    --divider-color: rgba(0, 0, 0, 0.05); /* Divisores sutiles */
+    
+    /* Sombras para tema claro */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Aplicación de colores base al body */
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+/* Fondo animado específico por tema */
+[data-theme="dark"] .background-animation {
+    background-image: url('../img/background-dark.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+[data-theme="light"] .background-animation {
+    background-image: url('../img/brackground-light.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Overlay para mejorar legibilidad */
+[data-theme="dark"] .background-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 15, 28, 0.7);
+    z-index: -2;
+}
+
+[data-theme="light"] .background-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(253, 242, 248, 0.129);/* background: rgba(253, 242, 248, 0.8); */
+    z-index: -2;
+}
+
+/* Líneas decorativas por tema */
+[data-theme="dark"] .title-underline {
+    background: var(--gradient-primary);
+}
+
+[data-theme="light"] .title-underline {
+    background: var(--gradient-primary);
+}
+
+/* ==========================================
+   COLORES POR CATEGORÍAS DE HABILIDADES
+   ========================================== */
+
+/* Iconos de categorías - Backend */
+.category-icon.backend,
+.specialty-icon.backend {
+    background: var(--gradient-primary); /* Violeta-azul */
+    color: white;
+}
+
+/* Iconos de categorías - Base de datos */
+.category-icon.database,
+.specialty-icon.database {
+    background: linear-gradient(135deg, #ef4444, #f97316); /* Rojo-naranja */
+    color: white;
+}
+
+/* Iconos de categorías - Frontend */
+.category-icon.frontend {
+    background: linear-gradient(135deg, #22c55e, #06b6d4); /* Verde */
+    color: white;
+}
+
+/* Iconos de categorías - Herramientas */
+.category-icon.tools {
+    background: linear-gradient(135deg, #eab308, #f97316); /* Amarillo-naranja */
+    color: white;
+}
+
+/* Iconos de categorías - SAP */
+.specialty-icon.sap,
+.category-icon.sap {
+    background: linear-gradient(135deg, #1d4ed8, #3b82f6); /* Azul */
+    color: white;
+}
+
+/* ========================
+   TRANSICIONES DE TEMA
+   ======================== */
+
+/* Transiciones suaves para todos los elementos que cambian con el tema */
+* {
+    transition: 
+        background-color var(--transition-smooth),
+        border-color var(--transition-smooth),
+        color var(--transition-smooth),
+        box-shadow var(--transition-smooth);
+}
+
+/* Transiciones específicas para elementos interactivos */
+button, .btn, .nav-link, .project-card, .skill-category {
+    transition: 
+        all var(--transition-smooth);
+}
+
+/* ===============================
+   MODO OSCURO - CANVAS PARTICLES
+   =============================== */
+
+/* Configuración de partículas para tema oscuro */
+[data-theme="dark"] #particleCanvas {
+    opacity: 0.6; /* Partículas más sutiles */
+}
+
+/* Configuración de partículas para tema claro */
+[data-theme="light"] #particleCanvas {
+    opacity: 2.5; /* Partículas más visibles */
+}
+
+/* ====================================
+   ELEMENTOS GLASSMORPHISM POR TEMA
+   ==================================== */
+
+/* Efecto vidrio para tarjetas en tema oscuro */
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .skill-category,
+[data-theme="dark"] .education-card,
+[data-theme="dark"] .experience-card {
+    background: rgba(26, 35, 50, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+}
+
+/* Efecto vidrio para tarjetas en tema claro */
+[data-theme="light"] .project-card,
+[data-theme="light"] .skill-category,
+[data-theme="light"] .education-card,
+[data-theme="light"] .experience-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+}
+
+/* ========================
+   VARIABLES POR TEMA
+   ======================== */
+
+/* Asegurar que las sombras cambien según el tema */
+[data-theme="dark"] {
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+}

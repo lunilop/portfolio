@@ -1,0 +1,250 @@
+/* =============================
+   RESPONSIVE DESIGN ESPECÍFICO
+   ============================= */
+
+/* Móviles */
+@media (max-width: 768px)  {
+
+    /* Header móvil */
+    .navbar {
+        position: fixed;
+        /* Fija el navbar */
+        top: 0;
+        /* Lo coloca arriba */
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        /* Para que quede por encima del contenido */
+        backdrop-filter: blur(20px);
+        /* Efecto glassmorphism */
+        border-bottom: 1px solid var(--border-color);
+        z-index: var(--z-header);
+        transition: all var(--transition-smooth);
+    }
+
+    [data-theme="dark"] .navbar {
+        background: rgba(26, 35, 50, 0.9);
+    }
+
+    [data-theme="light"] .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu {
+        display: none;
+        /* Ocultar menú en móvil */
+    }
+
+    .nav-brand {
+        margin-left: var(--spacing-sm);
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        margin-right: var(--spacing-sm);
+        /* Mostrar botón hamburguesa */
+    }
+
+    .nav-controls {
+        gap: var(--spacing-xs);
+    }
+
+    .control-btn span {
+        display: none;
+        /* Ocultar texto en móvil */
+    }
+
+    /* Hero responsive */
+    #home {
+        padding-top: var(--spacing-3xl)
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        /* Una columna en móvil */
+        text-align: center;
+        gap: var(--spacing-xl);
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        /* Título más pequeño */
+    }
+
+    .avatar-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Botones responsive */
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    
+  #mobileMenuBtn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-primar);
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  /* Ocultar menú en versión móvil por defecto */
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%;
+  }
+
+
+
+    /* Grids responsive */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        /* Una columna en móvil */
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .education-grid,
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    /* Timeline responsive */
+    .timeline {
+        padding-left: 0;
+    }
+
+    .timeline::before {
+        display: none;
+    }
+
+    .timeline-item {
+        padding-left: 0;
+    }
+
+    .timeline-marker {
+        display: none;
+        /*Ocultar marcadores en móvil */
+    }
+
+    .timeline-content {
+        margin-left: 0;
+    }
+
+    /* Experiencia responsive */
+
+    .experience-card,
+    .education-card {
+        background: var(--bg-card);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+    }
+
+    .experience-header,
+    .education-header {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        /* centra también el logo */
+    }
+
+    .experience-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* centra cada línea del bloque */
+        text-align: center;
+    }
+
+    .experience-info h3,
+    .company-name,
+    .experience-type {
+        width: auto;
+        /* evita que ocupen el 100% */
+        text-align: center;
+        /* fuerza alineado */
+    }
+
+    /* Espaciado reducido en móvil */
+    .section {
+        padding: var(--spacing-2xl) 0;
+    }
+
+    /* Botones de scroll en móvil */
+    .scroll-buttons {
+        right: var(--spacing-md);
+        bottom: var(--spacing-md);
+    }
+
+    .scroll-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    /* Botón conóceme más responsive */
+    .know-more-btn {
+        float: none;
+        display: flex;
+        justify-content: center;
+        margin-top: var(--spacing-md);
+    }
+
+    /* Educación responsive */
+    .education-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .education-icon {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+
+    .course-header {
+        flex-direction: column;
+    }
+
+    .course-card h4 {
+        text-align: center;
+    }
+
+    /* Hero responsive */
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-title span:first-child {
+        font-size: 1.25rem;
+    }
+}
+
+
+
+
+/* Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
